@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jessa M. Placencia |My Portfolio</title>
+
+  <!-- boxicons (matching the images) -->
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #081b29;
+      color: #fff;
+    }
+
+    /* ----- HEADER (exactly as in pics: "Portfolio." and nav) ----- */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 20px 10%;
+      background: #051129;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      border-bottom: 1px solid #0ef2;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: #fff;
+    }
+
+    .navbar a {
+      font-size: 18px;
+      color: #fff;
+      text-decoration: none;
+      margin-left: 35px;
+      transition: 0.3s;
+      font-weight: 500;
+    }
+
+    .navbar a:hover {
+      color: #0ef;
+    }
+
+    /* ----- home section (exactly like first pic) ----- */
+    .home {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 10%;
+      gap: 40px;
+    }
+
+    .home-content h3 {
+      font-size: 30px;
+      font-weight: 500;
+    }
+
+    .home-content h1 {
+      font-size: 54px;
+      font-weight: 700;
+      margin: 5px 0 10px;
+      color: #fff;
+    }
+
+    .home-content h3 span {
+      color: #0ef;
+      border-bottom: 3px solid #0ef;
+      padding-bottom: 4px;
+    }
+
+    .home-content p {
+      font-size: 16px;
+      line-height: 1.6;
+      margin: 20px 0 25px;
+      max-width: 600px;
+      color: #ddd;
+    }
+
+    /* ----- social icons (exactly as first pic: border, round) ----- */
+    .social-icons a {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      width: 44px;
+      height: 44px;
+      background: transparent;
+      border: 2px solid #0ef;
+      border-radius: 50%;
+      font-size: 22px;
+      color: #0ef;
+      margin-right: 18px;
+      transition: 0.3s;
+      text-decoration: none;
+    }
+
+    .social-icons a:hover {
+      background: #0ef;
+      color: #081b29;
+      box-shadow: 0 0 20px #0ef;
+    }
+
+    /* ----- glowing round image ----- */
+    .home-img {
+      position: relative;
+      width: 340px;
+      height: 340px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .home-img::before {
+      content: '';
+      position: absolute;
+      width: 360px;
+      height: 360px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, #0ef, #f06, #0ef);
+      animation: rotate 4s linear infinite;
+    }
+
+    .home-img img {
+      width: 310px;
+      height: 310px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 8px solid #081b29;
+      position: relative;
+      z-index: 2;
+      background: #1a2a3a; /* fallback if image missing */
+    }
+
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* ----- btn (more about me) ----- */
+    .btn-box {
+      display: inline-block;
+      padding: 12px 30px;
+      background: #0ef;
+      border-radius: 40px;
+      font-size: 16px;
+      font-weight: 600;
+      color: #081b29;
+      text-decoration: none;
+      box-shadow: 0 0 10px #0ef;
+      transition: 0.3s;
+      margin-top: 20px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-box:hover {
+      box-shadow: 0 0 25px #0ef;
+      transform: scale(1.03);
+    }
+
+    /* ----- sections general ----- */
+    section {
+      padding: 100px 10%;
+    }
+
+    .heading {
+      text-align: center;
+      font-size: 44px;
+      margin-bottom: 60px;
+      font-weight: 700;
+    }
+
+    .heading span {
+      color: #0ef;
+    }
+
+    /* ----- about section (exactly like second pic) ----- */
+    .about-content {
+      background: rgba(255,255,255,0.02);
+      padding: 40px;
+      border-radius: 20px;
+      border-left: 6px solid #0ef;
+      box-shadow: 0 0 25px #0ef1;
+    }
+
+    .about-content p {
+      font-size: 18px;
+      line-height: 1.8;
+      color: #ccc;
+      text-align: justify;
+    }
+
+    .about-content strong {
+      color: #0ef;
+    }
+
+    /* ----- services section (exactly like third pic) ----- */
+    .services-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .service-card {
+      background: #0e2a3a;
+      padding: 40px 30px;
+      border-radius: 20px;
+      flex: 1 1 280px;
+      max-width: 350px;
+      border: 1px solid #1e4a5e;
+      transition: 0.3s;
+      box-shadow: 0 8px 20px rgba(0,238,255,0.1);
+    }
+
+    .service-card:hover {
+      border-color: #0ef;
+      transform: translateY(-10px);
+      box-shadow: 0 0 30px #0ef3;
+    }
+
+    .service-card h3 {
+      font-size: 28px;
+      margin-bottom: 15px;
+      color: #0ef;
+    }
+
+    .service-card p {
+      font-size: 15px;
+      color: #bbb;
+      line-height: 1.7;
+      margin-bottom: 25px;
+    }
+
+    .learn-more {
+      color: #0ef;
+      font-weight: 600;
+      text-decoration: none;
+      border: 1px solid #0ef;
+      padding: 8px 20px;
+      border-radius: 30px;
+      transition: 0.3s;
+      display: inline-block;
+    }
+
+    .learn-more:hover {
+      background: #0ef;
+      color: #081b29;
+      box-shadow: 0 0 15px #0ef;
+    }
+
+    /* ----- CAREER OBJECTIVE section (replacing Skills) ----- */
+    .career-container {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .career-box {
+      background: rgba(255,255,255,0.03);
+      padding: 40px;
+      border-radius: 30px;
+      border-left: 6px solid #0ef;
+      box-shadow: 0 0 30px rgba(0,238,255,0.1);
+      backdrop-filter: blur(5px);
+    }
+
+    .career-box p {
+      font-size: 20px;
+      line-height: 1.8;
+      color: #ddd;
+      text-align: center;
+      font-style: italic;
+      letter-spacing: 0.5px;
+    }
+
+    .career-highlights {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 25px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .highlight-item {
+      background: #0e2a3a;
+      padding: 20px 30px;
+      border-radius: 50px;
+      border: 1px solid #0ef;
+      font-size: 18px;
+      font-weight: 500;
+      color: #0ef;
+      transition: 0.3s;
+    }
+
+    .highlight-item:hover {
+      background: #0ef;
+      color: #081b29;
+      box-shadow: 0 0 20px #0ef;
+      transform: translateY(-5px);
+    }
+
+    /* ----- project / latest project (combining 5th & 6th pic) ----- */
+    .project-showcase {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      justify-content: center;
+      align-items: center;
+      background: #0c1e2c;
+      padding: 50px 30px;
+      border-radius: 40px;
+      border: 1px solid #0ef3;
+    }
+
+    .project-card {
+      background: #0a1a24;
+      padding: 30px;
+      border-radius: 30px;
+      min-width: 240px;
+      flex: 1 1 200px;
+      text-align: center;
+      border: 1px solid #2b5f75;
+    }
+
+    .project-card h4 {
+      font-size: 28px;
+      color: #0ef;
+      margin-bottom: 10px;
+    }
+
+    .project-card p {
+      font-size: 14px;
+      color: #aaa;
+      margin: 15px 0;
+    }
+
+    .project-card .start-btn {
+      background: transparent;
+      border: 2px solid #0ef;
+      color: #0ef;
+      padding: 10px 35px;
+      border-radius: 40px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.3s;
+      font-size: 16px;
+    }
+
+    .project-card .start-btn:hover {
+      background: #0ef;
+      color: #000;
+    }
+
+    .linux-design {
+      background: #102631;
+      border-left: 8px solid #0ef;
+    }
+
+    /* ----- CONTACT INFORMATION section (updated for student) ----- */
+    .contact-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 50px;
+      background: #0a202b;
+      border-radius: 50px;
+      padding: 50px;
+      border: 1px solid #0ef2;
+    }
+
+    .contact-info {
+      flex: 1 1 300px;
+    }
+
+    .contact-info h3 {
+      font-size: 36px;
+      color: #0ef;
+      margin-bottom: 20px;
+    }
+
+    .contact-info p {
+      color: #ccc;
+      line-height: 1.8;
+      font-size: 17px;
+      margin-bottom: 25px;
+    }
+
+    .student-details {
+      background: #0e2a3a;
+      padding: 30px;
+      border-radius: 30px;
+      margin-top: 20px;
+      border: 1px solid #0ef3;
+    }
+
+    .detail-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 25px;
+      font-size: 18px;
+    }
+
+    .detail-item i {
+      font-size: 28px;
+      color: #0ef;
+      min-width: 40px;
+    }
+
+    .detail-item span {
+      color: #ddd;
+      word-break: break-word;
+    }
+
+    .detail-item strong {
+      color: #0ef;
+      margin-right: 10px;
+    }
+
+    .school-info {
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 2px dashed #0ef3;
+      text-align: center;
+    }
+
+    .school-info h4 {
+      color: #0ef;
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .school-info p {
+      color: #ddd;
+      font-size: 16px;
+    }
+
+    .contact-form {
+      flex: 2 1 400px;
+    }
+    
+    /* Keep form styles but repurpose for student info display */
+    .info-card {
+      background: #0e2a3a;
+      border-radius: 30px;
+      padding: 40px;
+      border: 1px solid #0ef3;
+    }
+
+    .info-card h4 {
+      color: #0ef;
+      font-size: 24px;
+      margin-bottom: 30px;
+      border-bottom: 2px solid #0ef;
+      padding-bottom: 10px;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 25px;
+      margin-bottom: 30px;
+    }
+
+    .info-box {
+      background: #1e3a4a;
+      padding: 20px;
+      border-radius: 20px;
+      text-align: center;
+      transition: 0.3s;
+    }
+
+    .info-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 20px #0ef3;
+    }
+
+    .info-box i {
+      font-size: 40px;
+      color: #0ef;
+      margin-bottom: 15px;
+    }
+
+    .info-box h5 {
+      color: #0ef;
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .info-box p {
+      color: #ddd;
+      font-size: 16px;
+    }
+
+    .availability {
+      background: #1e3a4a;
+      padding: 20px;
+      border-radius: 20px;
+      margin-top: 20px;
+    }
+
+    .availability p {
+      color: #0ef;
+      font-size: 18px;
+      text-align: center;
+    }
+
+    .availability i {
+      color: #0ef;
+      margin-right: 10px;
+    }
+
+    /* footer */
+    footer {
+      background: #051129;
+      text-align: center;
+      padding: 25px;
+      font-size: 18px;
+      border-top: 1px solid #0ef2;
+    }
+
+    /* responsive */
+    @media (max-width: 900px) {
+      .home {
+        flex-direction: column-reverse;
+        text-align: center;
+        padding-top: 120px;
+      }
+      .navbar a {
+        margin-left: 18px;
+        font-size: 16px;
+      }
+      .logo {
+        font-size: 22px;
+      }
+      .career-box p {
+        font-size: 18px;
+      }
+      .detail-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 5px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo"> My Portfolio </div>
+  <nav class="navbar">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#services">Skills</a>
+    <a href="#career">Career</a>
+    <a href="#project">Project</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<!-- HOME section -->
+<section class="home" id="home">
+  <div class="home-content">
+    <h3>Hello, It's Me</h3>
+    <h1>Jessa M. Placencia</h1>
+    <h3>And I'm a <span id="typing">Student</span></h3>
+    <p>BS Information Technology | 3rd Year. I'm Jessa M. Placencia, 21 years of age and taking Bachelor of Science in Information Technology</p>
+
+    <div class="social-icons">
+      <a href="#"><i class='bx bxl-facebook'></i></a>
+      <a href="#"><i class='bx bxl-instagram'></i></a>
+      <a href="#"><i class='bx bxl-github'></i></a>
+      <a href="#"><i class='bx bxl-linkedin'></i></a>
+    </div>
+
+    <a href="#about" class="btn-box">More About Me</a>
+  </div>
+
+  <div class="home-img">
+    <img src="jessa.jpg" alt="Jessa M. Placencia">
+  </div>
+</section>
+
+<!-- ABOUT section -->
+<section id="about">
+  <h2 class="heading">About <span>Me</span></h2>
+  <div class="about-content">
+    <p><strong>hi</strong> I am Jessa M. Placencia, 3rd year college student, taking Bachelor of Science in Information Technology. I am passionate about learning new technologies and building creative solutions that make a difference.</p>
+    <a href="#career" class="btn-box" style="margin-top:15px;">My Career Goal</a>
+  </div>
+</section>
+
+<!-- SERVICES section -->
+<section id="services">
+  <h2 class="heading">My <span>Skills</span></h2>
+  <div class="services-container">
+    <div class="service-card">
+      <h3>Problem Solving</h3>
+      <p>I have ways to solve all my problems creatively and efficiently using logical thinking and analytical skills.</p>
+      <a href="#" class="learn-more">Learn More</a>
+    </div>
+    <div class="service-card">
+      <h3>Designing</h3>
+      <p>I can make unique and visually appealing designs that capture attention and deliver messages effectively.</p>
+      <a href="#" class="learn-more">Learn More</a>
+    </div>
+    <div class="service-card">
+      <h3>Basic Programming</h3>
+      <p>I can program using various languages and frameworks to build functional and user-friendly applications.</p>
+      <a href="#" class="learn-more">Learn More</a>
+    </div>
+  </div>
+</section>
+
+<!-- CAREER OBJECTIVE section -->
+<section id="career">
+  <h2 class="heading">Career <span>Objective</span></h2>
+  
+  <div class="career-container">
+    <div class="career-box">
+      <p>"To leverage my skills in information technology and passion for continuous learning to contribute to innovative projects, grow as a professional developer, and eventually become a full-stack developer who creates meaningful digital experiences that positively impact users and businesses."</p>
+    </div>
+    
+    <div class="career-highlights">
+      <span class="highlight-item">🎯 Full-Stack Developer</span>
+      <span class="highlight-item">💡 Creative Problem Solver</span>
+      <span class="highlight-item">📚 Lifelong Learner</span>
+      <span class="highlight-item">🤝 Team Collaborator</span>
+      <span class="highlight-item">🌐 Web Enthusiast</span>
+      <span class="highlight-item">⚡ Innovation-Driven</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECT section -->
+<section id="project">
+  <h2 class="heading">Latest <span>Project</span></h2>
+  <div class="project-showcase">
+    <div class="project-card linux-design">
+      <h4>NONE</h4>
+      <p></p>
+      <button class="start-btn">START</button>
+    </div>
+    <div class="project-card">
+      <h4>NONE</h4>
+      <p></p>
+      <button class="start-btn">START</button>
+    </div>
+    <div class="project-card">
+      <h4>NONE</h4>
+      <p></p>
+      <button class="start-btn">START</button>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT INFORMATION section (updated for student) -->
+<section class="contact" id="contact">
+  <h2 class="heading">Contact <span>Information</span></h2>
+  <div class="contact-container">
+    <div class="contact-info">
+      <h3>Jessa M. Placencia</h3>
+      <p>3rd Year BS Information Technology Student</p>
+      
+      <div class="student-details">
+        <div class="detail-item">
+          <i class='bx bx-envelope'></i>
+          <span><strong>Email:</strong> jessaplacencia@gmail.com</span>
+        </div>
+        <div class="detail-item">
+          <i class='bx bx-phone'></i>
+          <span><strong>Phone:</strong> +63 912 345 6789</span>
+        </div>
+        <div class="detail-item">
+          <i class='bx bx-map'></i>
+          <span><strong>Address:</strong> Bantayan,Cebu, Philippines</span>
+        </div>
+        <div class="detail-item">
+          <i class='bx bx-calendar'></i>
+          <span><strong>Student ID:</strong> 2023-1246</span>
+        </div>
+      </div>
+
+      <div class="school-info">
+        <h4>🏫 Madridejos Community Collage</h4>
+        <p>Bachelor of Science in Information Technology</p>
+        <p>3rd Year • 2nd Semester</p>
+        
+      </div>
+
+      <div class="social-icons" style="margin-top: 25px;">
+        <a href="#"><i class='bx bxl-facebook'></i></a>
+        <a href="#"><i class='bx bxl-instagram'></i></a>
+        <a href="#"><i class='bx bxl-github'></i></a>
+        <a href="#"><i class='bx bxl-linkedin'></i></a>
+      </div>
+    </div>
+
+    <div class="contact-form">
+      <div class="info-card">
+        <h4>📋 Student Information</h4>
+        
+        <div class="info-grid">
+          <div class="info-box">
+            <i class='bx bx-book-open'></i>
+            <h5>Course</h5>
+            <p>BS Information Technology</p>
+          </div>
+          <div class="info-box">
+            <i class='bx bx-calendar-check'></i>
+            <h5>Year Level</h5>
+            <p>3rd Year</p>
+          </div>
+          <div class="info-box">
+            <i class='bx bx-time'></i>
+            <h5>Section</h5>
+            <p>NORTH</p>
+          </div>
+          <div class="info-box">
+            <i class='bx bx-chip'></i>
+            <h5>Major</h5>
+            <p>Programming</p>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Jessa M. Placencia | Student Portfolio
+</footer>
+
+</body>
+</html>
